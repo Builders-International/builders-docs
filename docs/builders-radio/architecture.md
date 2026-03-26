@@ -1,0 +1,331 @@
+# Builders Radio Architecture
+
+## System Overview
+
+Builders Radio operates on a three-tier architecture: cloud infrastructure, radio management platform, and distribution/integration layer.
+
+```
+┌─────────────────────────────────────────────────────────┐
+│           Public Listeners (Web Browser)                │
+└────────────────────────┬────────────────────────────────┘
+                         │
+        ┌────────────────┴────────────────┐
+        │                                 │
+   ┌────▼─────┐                    ┌─────▼────┐
+   │Web Player│                    │ Stream   │
+   │ (HTML5)  │                    │  URLs    │
+   └────┬─────┘                    └─────┬────┘
+        │                                 │
+        └────────────────┬────────────────┘
+                         │
+        ┌────────────────▼────────────────┐
+        │      AzuraCast Instance         │
+        │  (Radio Management Platform)    │
+        └────────────────┬────────────────┘
+                         │
+        ┌────────────────▼────────────────┐
+        │    DigitalOcean Droplet         │
+        │    (Ubuntu Linux VPS)           │
+        └────────────────┬────────────────┘
+                         │
+        ┌────────────────┴────────────────┐
+        │                                 │
+   ┌────▼──────┐                   ┌─────▼────┐
+   │AWS S3     │                   │Local SSD  │
+   │ (Backup)  │                   │(Cache)    │
+   └───────────┘                   └───────────┘
+```
+
+## Cloud Infrastructure
+
+### DigitalOcean Droplet
+
+**Role:** Primary hosting platform for AzuraCast
+
+**Key specifications:**
+- **OS:** Ubuntu Linux (latest LTS)
+- **Containerization:** Docker & Docker Compose
+- **Resource allocation:** Sufficient for concurrent listeners
+- **Networking:** Static IP, firewall rules configured
+- **Monitoring:** System health and uptime monitoring enabled
+
+**Access methods:**
+- SSH via key-based authentication (private key in builders-radio repository)
+- Remote console via DigitalOcean dashboard
+- API for infrastructure management
+
+### AWS S3 Integration
+
+**Role:** Backup storage and supplementary media hosting
+
+**Configuration:**
+- **Bucket name:** `builders-radio-video-storage`
+- **Purpose:** Store backup media and video content
+- **Access control:** AWS IAM credentials (stored in environment configuration)
+- **Use cases:**
+  - Video file storage for web playback
+  - Media library backups
+  - Archive of historical broadcasts
+
+## AzuraCast Platform
+
+### What is AzuraCast?
+
+AzuraCast is a self-contained, open-source broadcast automation and remote management platform. It provides:
+
+- **Standalone installation** - runs independently without external dependencies
+- **Docker deployment** - containerized for easy scaling and updates
+- **Web-based management** - no command-line expertise required for operations
+- **Professional features** - comparable to enterprise radio solutions at fraction of cost
+
+### Core Components
+
+#### 1. Media Library Management
+
+**Functionality:**
+- Upload and organize audio files
+- Tag metadata (artist, album, genre, duration)
+- Batch import from directories
+- Duplicate detection and cleanup
+- Audio quality validation
+
+**Supported formats:**
+- MP3, FLAC, OGG, WAV, AAC, and others
+- Automatic bitrate normalization
+- Audio processing and enhancement
+
+**Organization:**
+- Stored in `/media` directory of this repository
+- Categories: Bilateral, Instrumentals, Worship
+- Synced with AzuraCast media library
+
+#### 2. Playlist Automation
+
+**Features:**
+- Create custom playlists with rule-based scheduling
+- Time-based rotation (morning, afternoon, evening shows)
+- Genre and format rotation
+- Jingle and advertisement scheduling
+- Weighted randomization for diversity
+
+**Configuration:**
+- Defined in AzuraCast dashboard
+- Persisted in AzuraCast database
+- Can be exported and versioned
+
+#### 3. Streaming Server
+
+**Streaming capabilities:**
+- **Icecast2 streams** - multiple concurrent connections
+- **Bitrate options** - typically 128 kbps, 192 kbps, 320 kbps variants
+- **Audio formats** - MP3, AAC, OGG encoding
+- **Listener limits** - configured per bitrate tier
+- **Concurrent listeners** - automatic load balancing
+
+**Stream URLs:**
+- Generated by AzuraCast for each station/mount point
+- Publicly accessible from deployed droplet
+- Embedded in web players and applications
+
+#### 4. Web Dashboard
+
+**Access point:**
+- AzuraCast admin panel (web-based, HTTPS)
+- Requires authentication (username/password)
+- Role-based access control (admin, staff, DJ, user roles)
+
+**Capabilities:**
+- Real-time listener statistics
+- Media library management
+- Playlist editing and scheduling
+- Live DJ mode for broadcast
+- Station settings and configuration
+- Analytics and reporting
+
+#### 5. API Interface
+
+**Purpose:** Programmatic control of the radio station
+
+**Common endpoints:**
+- `/api/stations/{station_id}/now-playing` - current track info
+- `/api/stations/{station_id}/listeners` - listener count
+- `/api/stations/{station_id}/requests` - song requests
+- `/api/stations/{station_id}/playlists` - playlist management
+
+**Authentication:**
+- API keys for external integrations
+- Token-based access control
+- Rate limiting per application
+
+## Media Distribution and Integration
+
+### Web Player Integration
+
+**Public facing code** (`/public_code` directory):
+
+**glassPlayer.css**
+- Styling for radio player widget
+- Responsive design for desktop and mobile
+- Theme customization options
+- Accessibility features
+
+**public.js**
+- Video background playback functionality
+- Loads background videos from S3 URLs
+- Automatic video rotation when ended
+- Handles autoplay policies and browser limitations
+
+**public.css**
+- Additional styling for player and surrounding elements
+- Container styling and layout
+- Animation and transition effects
+
+### Embedded Players
+
+Players can be embedded on:
+- Builders International website
+- Social media pages (via embedded players)
+- Mobile applications
+- Partner websites
+
+## Video Workflow Integration
+
+### Vimeo to S3 Transfer System
+
+**Purpose:** Automate video content distribution from Vimeo to AWS S3
+
+**How it works:**
+
+1. **Vimeo API Connection**
+   - Uses Vimeo team account (Builders International workspace)
+   - Authenticated via OAuth token and API credentials
+   - Queries all videos in team library
+
+2. **Video Discovery**
+   - Retrieves metadata: title, folder structure, download links
+   - Preserves folder hierarchy from Vimeo
+   - Handles pagination for large video libraries
+
+3. **S3 Upload**
+   - Downloads video files via Vimeo API
+   - Uploads to AWS S3 bucket with folder structure
+   - Concurrent uploads (max 4 workers) for performance
+   - Progress tracking and error handling
+
+4. **File Organization**
+   - Preserves Vimeo folder structure in S3
+   - Consistent naming conventions
+   - Automatic .mp4 extension addition
+
+**Script locations:**
+- `videos-transfer-vimeo.py` - main transfer script
+- `find_builders_team.py` - identify team workspaces
+- `find_team_videos.py` - list available videos
+- `test_vimeo_access.py` - verify API connectivity
+- `test_transfer.py` - test single video transfer
+
+**Configuration:**
+- Credentials in `.env` file (not versioned)
+- AWS access keys for S3 upload
+- Vimeo OAuth tokens
+- Bucket name and optional path prefix
+
+## Security Architecture
+
+### Access Control Layers
+
+**Layer 1: Infrastructure Access**
+- SSH key authentication to DigitalOcean
+- Firewall rules for port access
+- Network isolation via security groups
+
+**Layer 2: AzuraCast Dashboard**
+- Username/password authentication
+- Role-based access control
+- Session management
+- HTTPS encryption for admin access
+
+**Layer 3: API Access**
+- API key tokens for external integrations
+- Rate limiting per application
+- IP whitelisting (optional)
+
+### Secret Management
+
+**Credentials stored in this repository:**
+- SSH private key (key-based authentication)
+- SSH public key (deployment to droplet)
+
+**Credentials stored elsewhere (environment variables):**
+- AzuraCast admin credentials
+- AWS access keys
+- Vimeo API tokens
+- Database passwords
+
+**Best practices:**
+- Never commit credentials to version control (except SSH keys for team access)
+- Rotate API keys quarterly
+- Use environment-specific configurations
+- Limit credential scope to minimum required permissions
+
+## Monitoring and Maintenance
+
+### Health Checks
+
+- AzuraCast self-monitoring via dashboard
+- DigitalOcean droplet CPU/memory/disk monitoring
+- Listener connection monitoring
+- Stream availability checks
+
+### Backup Strategy
+
+- AzuraCast database exports
+- Media library backups to AWS S3
+- Configuration snapshots
+- DigitalOcean automated snapshots (configurable retention)
+
+### Updates and Patching
+
+- AzuraCast updates via Docker image pulls
+- Ubuntu system updates
+- Dependency updates for Python scripts
+- Database migrations for schema changes
+
+## Integration Points
+
+### External Systems
+
+1. **Vimeo** - Video content source
+2. **AWS S3** - Media backup and storage
+3. **DigitalOcean** - Infrastructure hosting
+4. **Builders International websites** - Player embeddings
+5. **Mobile applications** - Stream URL consumption
+
+### API Consumers
+
+- Web applications requesting now-playing info
+- Mobile apps pulling listener counts
+- Analytics systems consuming logs
+- Third-party streaming platforms
+
+## Performance Considerations
+
+### Streaming Optimization
+
+- **Bitrate selection** - multiple options for different bandwidth
+- **Geographic distribution** - CDN for reduced latency
+- **Concurrent listener limits** - scaled per infrastructure size
+- **Buffer management** - configurable stream buffering
+
+### Media Library Optimization
+
+- **Indexing** - database optimization for quick searches
+- **Caching** - Redis caching for frequently accessed data
+- **Batch operations** - bulk import/export capabilities
+
+### Scalability Options
+
+- **Vertical scaling** - upgrade droplet resources
+- **Load balancing** - multiple AzuraCast instances
+- **CDN integration** - Cloudflare or similar for distribution
+- **Database optimization** - PostgreSQL performance tuning

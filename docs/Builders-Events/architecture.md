@@ -881,6 +881,6 @@ All administrative actions logged to `audit_logs` table:
 ## Cross-Reference Standards
 
 This project implements standards documented in:
-- [Infrastructure Documentation](/docs/standards/infrastructure.md) - Railway deployment, Supabase database
-- [CI/CD Documentation](/docs/standards/cicd.md) - EAS builds, Railway auto-deploy
-- [Code Quality Documentation](/docs/standards/code-quality.md) - TypeScript, ESLint, testing practices
+- [Infrastructure Documentation](/docs/infrastructure/overview.md) - Railway deployment, Supabase database
+- [CI/CD Documentation](/docs/cicd-deployment/overview.md) - EAS builds, Railway auto-deploy
+- [Code Quality Documentation](/docs/code-quality/overview.md) - TypeScript, ESLint, testing practices

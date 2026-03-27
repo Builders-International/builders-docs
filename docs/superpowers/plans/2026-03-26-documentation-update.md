@@ -55,7 +55,7 @@ We prioritize cloud-native solutions that provide:
 
 ### DNS & CDN
 - **Cloudflare:** DNS management, CDN, and security features
-- See [Cloudflare documentation](./cloudflare.md)
+- See [Cloudflare documentation](../../infrastructure/cloudflare.md)
 
 ### Analytics
 - **PostHog:** Product analytics and user behavior tracking
@@ -587,7 +587,7 @@ Uptime Kuma data is backed up daily to:
 1. Check if server is under load
 2. Verify network latency (Uptime Kuma location vs service location)
 3. Review application performance metrics
-4. Consider adding CDN (see [Cloudflare docs](./cloudflare.md))
+4. Consider adding CDN (see [Cloudflare docs](../../infrastructure/cloudflare.md))
 
 ## Resources
 
@@ -732,7 +732,7 @@ Create rules to block malicious traffic:
 
 ```
 Rule Name: Block Bad Bots
-Expression: (cf.client.bot) and not (cf.verified_bot_category in {"Search Engine Crawler" "Monitoring & Analytics"})
+Expression: (cf.client.bot) and not (cf.verified_bot_category in ["Search Engine Crawler" "Monitoring & Analytics"])
 Action: Block
 ```
 
@@ -1655,14 +1655,14 @@ Developer → Feature Branch → PR → CI Tests → Code Review → Merge → C
 
 Every deployment includes:
 - **Health checks** to verify service is running
-- **Uptime monitoring** via [Uptime Kuma](../infrastructure/uptime-kuma.md)
+- **Uptime monitoring** via [Uptime Kuma](../../infrastructure/uptime-kuma.md)
 - **Error tracking** for issues
 - **Analytics** via [PostHog](../infrastructure/posthog.md)
 - **Logs** for debugging
 
 ## Best Practices
 
-1. **Keep builds fast** (<5 minutes for CI)
+1. **Keep builds fast** (under 5 minutes for CI)
 2. **Test locally first** before pushing
 3. **Small, frequent commits** easier to review and revert
 4. **Meaningful commit messages** describe why, not just what
@@ -1682,10 +1682,10 @@ Every deployment includes:
 
 ## Related Documentation
 
-- [Workflows](./workflows.md) - Detailed workflow configurations
-- [Deployment Process](./deployment-process.md) - Step-by-step deployment procedures
-- [Environments](./environments.md) - Environment-specific configuration
-- [Infrastructure](../infrastructure/overview.md) - Infrastructure tooling
+- [Workflows](../../cicd-deployment/workflows.md) - Detailed workflow configurations
+- [Deployment Process](../../cicd-deployment/deployment-process.md) - Step-by-step deployment procedures
+- [Environments](../../cicd-deployment/environments.md) - Environment-specific configuration
+- [Infrastructure](../../infrastructure/overview.md) - Infrastructure tooling
 EOF
 ```
 
@@ -2196,7 +2196,7 @@ Configure these secrets in GitHub repository settings:
 - [GitHub Actions Documentation](https://docs.github.com/en/actions)
 - [Workflow Syntax](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions)
 - [Marketplace Actions](https://github.com/marketplace?type=actions)
-- [EGI CI/CD Repo](~/Developer/egi-ci:cd/) - Source templates
+- EGI CI/CD Repo - Source templates (available in external repository)
 EOF
 ```
 
@@ -2256,7 +2256,7 @@ Staging deployments happen automatically on merge to `main`.
    ```
 
 4. **Monitor for issues**
-   - Check [Uptime Kuma](../infrastructure/uptime-kuma.md) dashboard
+   - Check [Uptime Kuma](../../infrastructure/uptime-kuma.md) dashboard
    - Review error logs
    - Test critical user paths
    - Verify integrations (APIs, databases, etc.)
@@ -2666,14 +2666,14 @@ Track these metrics for each deployment:
 **Goals:**
 - Deploy at least daily to staging
 - Deploy to production multiple times per week
-- Change failure rate <5%
-- MTTR <30 minutes
+- Change failure rate under 5 percent
+- MTTR under 30 minutes
 
 ## Resources
 
-- [CI/CD Workflows](./workflows.md)
-- [Environment Configuration](./environments.md)
-- [Infrastructure Monitoring](../infrastructure/uptime-kuma.md)
+- [CI/CD Workflows](../../cicd-deployment/workflows.md)
+- [Environment Configuration](../../cicd-deployment/environments.md)
+- [Infrastructure Monitoring](../../infrastructure/uptime-kuma.md)
 - [Incident Response Playbook](#) (TODO: Create this document)
 EOF
 ```
@@ -2956,7 +2956,7 @@ Manual with approval gates:
 5. Smoke tests + monitoring
 6. Team notification
 
-See [Deployment Process](./deployment-process.md) for details.
+See [Deployment Process](../../cicd-deployment/deployment-process.md) for details.
 
 ### Monitoring & Alerting
 
@@ -3185,9 +3185,9 @@ If environments diverge:
 
 ## Resources
 
-- [Infrastructure Overview](../infrastructure/overview.md)
-- [Deployment Process](./deployment-process.md)
-- [CI/CD Workflows](./workflows.md)
+- [Infrastructure Overview](../../infrastructure/overview.md)
+- [Deployment Process](../../cicd-deployment/deployment-process.md)
+- [CI/CD Workflows](../../cicd-deployment/workflows.md)
 - [Secrets Management](#) (TODO: Detailed secrets guide)
 EOF
 ```

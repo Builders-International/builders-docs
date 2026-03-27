@@ -84,7 +84,7 @@ Astro is a modern meta-framework optimized for content-focused websites. It ship
    - `pages/health.ts` → Health check endpoint
 
 4. **Layouts System**
-   - `BaseLayout.astro` - Global wrapper with <head> and navigation
+   - `BaseLayout.astro` - Global wrapper with head section and navigation
    - `PageLayout.astro` - Static pages (About, Contact)
    - `PostLayout.astro` - Blog posts with author, date, categories
 
@@ -1044,7 +1044,7 @@ export class PageRepository {
 **Concept**: Reusable layout templates for consistent page structure.
 
 **Implementation**:
-- `BaseLayout.astro` - Global wrapper with <head>, navigation, footer
+- `BaseLayout.astro` - Global wrapper with head section, navigation, footer
 - `PageLayout.astro` - Extends Base, adds page-specific structure
 - `PostLayout.astro` - Extends Base, adds blog-specific elements
 

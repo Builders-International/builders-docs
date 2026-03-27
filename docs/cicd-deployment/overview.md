@@ -134,7 +134,7 @@ Every deployment includes:
 
 ## Best Practices
 
-1. **Keep builds fast** (<5 minutes for CI)
+1. **Keep builds fast** (under 5 minutes for CI)
 2. **Test locally first** before pushing
 3. **Small, frequent commits** easier to review and revert
 4. **Meaningful commit messages** describe why, not just what

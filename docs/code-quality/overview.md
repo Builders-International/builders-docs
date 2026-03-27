@@ -241,7 +241,7 @@ See [Infrastructure Documentation](/docs/infrastructure/overview.md).
 - **Quality Gates**: PRs blocked on test failures, linting errors, low coverage
 - **Deploy Confidence**: Good tests enable confident deployments
 
-See [CI/CD Documentation](/docs/cicd/overview.md).
+See [CI/CD Documentation](/docs/cicd-deployment/overview.md).
 
 ## Measuring Code Quality
 
@@ -332,7 +332,7 @@ A: Apply the Boy Scout Rule: leave code better than you found it. Gradually impr
 - [Code Review Process](code-review.md) - Detailed review requirements
 - [Best Practices](best-practices.md) - Language-specific standards
 - [Infrastructure Standards](/docs/infrastructure/overview.md) - Infrastructure code quality
-- [CI/CD Documentation](/docs/cicd/overview.md) - Automated quality checks
+- [CI/CD Documentation](/docs/cicd-deployment/overview.md) - Automated quality checks
 
 ## Summary
 

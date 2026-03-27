@@ -499,4 +499,4 @@ Configure these secrets in GitHub repository settings:
 - [GitHub Actions Documentation](https://docs.github.com/en/actions)
 - [Workflow Syntax](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions)
 - [Marketplace Actions](https://github.com/marketplace?type=actions)
-- [EGI CI/CD Repo](~/Developer/egi-ci:cd/) - Source templates
+- EGI CI/CD Repo - Source templates (available in external repository)

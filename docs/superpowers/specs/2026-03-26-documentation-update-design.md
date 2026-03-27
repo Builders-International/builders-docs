@@ -177,9 +177,9 @@ docs/
 ### Cross-Referencing Strategy
 
 Each project will reference relevant standards sections using relative links:
-- "Deployment follows [CI/CD workflows](../cicd-deployment/workflows.md)"
-- "Uses [Cloudflare DNS](../infrastructure/cloudflare.md) per infrastructure standards"
-- "Analytics tracked via [PostHog](../infrastructure/posthog.md)"
+- "Deployment follows [CI/CD workflows](../../cicd-deployment/workflows.md)"
+- "Uses [Cloudflare DNS](../../infrastructure/cloudflare.md) per infrastructure standards"
+- "Analytics tracked via [PostHog](../../infrastructure/posthog.md)"
 
 ## 4. egi-ci:cd Integration & Adaptation
 

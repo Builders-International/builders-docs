@@ -513,7 +513,7 @@ Review `package.json` for version ranges. Consider:
 
 ## Cross-Reference Documentation
 
-- **Infrastructure Standards**: See [Infrastructure Documentation](/docs/standards/infrastructure.md)
-- **CI/CD Practices**: See [CI/CD Documentation](/docs/standards/cicd.md)
-- **Code Quality**: See [Code Quality Documentation](/docs/standards/code-quality.md)
+- **Infrastructure Standards**: See [Infrastructure Documentation](/docs/infrastructure/overview.md)
+- **CI/CD Practices**: See [CI/CD Documentation](/docs/cicd-deployment/overview.md)
+- **Code Quality**: See [Code Quality Documentation](/docs/code-quality/overview.md)
 - **Related Projects**: See [Builders-Data-Dashboard](/docs/Builders-Data-Dashboard/next-steps.md)

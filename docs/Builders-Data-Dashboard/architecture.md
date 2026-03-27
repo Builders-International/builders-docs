@@ -1211,7 +1211,7 @@ curl -X POST http://localhost:3000/api/sync/fpd-workbooks
 
 ### Code Quality
 
-Aligns with [Code Quality Standards](../Infrastructure/code-quality.md):
+Aligns with [Code Quality Standards](../code-quality/overview.md):
 
 - TypeScript strict mode enabled
 - ESLint configuration (Next.js recommended)
@@ -1221,7 +1221,7 @@ Aligns with [Code Quality Standards](../Infrastructure/code-quality.md):
 
 ### CI/CD
 
-Potential alignment with [CI/CD Standards](../Infrastructure/ci-cd-workflows.md):
+Potential alignment with [CI/CD Standards](../cicd-deployment/workflows.md):
 
 - Automated deployments via Vercel
 - Environment-based configurations

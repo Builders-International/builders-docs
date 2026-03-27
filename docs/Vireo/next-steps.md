@@ -652,7 +652,7 @@ IVI (Identity Value Identifier) preserves legacy DonorSnap IPK (Internal Primary
 #### Performance Optimization Sprint
 **Focus Areas**:
 - Database query optimization (N+1 elimination)
-- API response time reduction (target: <200ms p95)
+- API response time reduction (target: under 200ms p95)
 - Frontend bundle size reduction
 - Image optimization and CDN
 - Server-side caching strategy
@@ -817,11 +817,11 @@ IVI (Identity Value Identifier) preserves legacy DonorSnap IPK (Internal Primary
 ### Key Performance Indicators (KPIs)
 
 #### System Performance
-- **API Response Time**: Target <200ms (p95)
-- **Page Load Time**: Target <2s (First Contentful Paint)
-- **Database Query Time**: Target <50ms (p95)
+- **API Response Time**: Target under 200ms (p95)
+- **Page Load Time**: Target under 2 seconds (First Contentful Paint)
+- **Database Query Time**: Target under 50ms (p95)
 - **Uptime**: Target 99.5% (excluding maintenance)
-- **Error Rate**: Target <0.5%
+- **Error Rate**: Target under 0.5 percent
 
 #### User Adoption
 - **Daily Active Users (DAU)**: Track weekly
@@ -865,7 +865,7 @@ IVI (Identity Value Identifier) preserves legacy DonorSnap IPK (Internal Primary
 - Cloud SQL: $10-15
 - Cloud Storage: $1-2
 - Redis (MemoryStore): $5-10
-- Secret Manager: <$1
+- Secret Manager: under $1
 - **Total**: ~$25-45/month
 
 #### Projected (Production at scale)
@@ -874,7 +874,7 @@ IVI (Identity Value Identifier) preserves legacy DonorSnap IPK (Internal Primary
 - Cloud SQL: $100-150 (HA + read replicas)
 - Cloud Storage: $5-10
 - Redis (MemoryStore): $20-30
-- Secret Manager: <$1
+- Secret Manager: under $1
 - Cloud Load Balancer: $20-30
 - Cloud Trace/Logging: $10-20
 - **Total**: ~$225-380/month

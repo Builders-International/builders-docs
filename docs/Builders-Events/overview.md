@@ -307,7 +307,7 @@ Builders-Events/
 - API Documentation: http://localhost:3001/docs (Swagger UI in development)
 - Mobile Giving Integration: `/docs/MOBILE_GIVING_INTEGRATION.md`
 - Railway Deployment: `/docs/railway-deployment.md`
-- Standards: See [Infrastructure](/docs/standards/infrastructure.md), [CI/CD](/docs/standards/cicd.md)
+- Standards: See [Infrastructure](/docs/infrastructure/overview.md), [CI/CD](/docs/cicd-deployment/overview.md)
 
 ## Support & Contact
 

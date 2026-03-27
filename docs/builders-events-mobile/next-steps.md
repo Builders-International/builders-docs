@@ -643,11 +643,11 @@ Improve app security and protect user data.
 
 ## Resources & References
 
-**Related Documentation**:
-- [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md) - Current architecture
-- [Refactor/FUTURE_STATE_NOTES.md](Refactor/FUTURE_STATE_NOTES.md) - Long-term architecture plans
-- [TESTING.md](TESTING.md) - Testing strategies
-- [DEBUGGING_WHITE_SCREEN.md](DEBUGGING_WHITE_SCREEN.md) - Troubleshooting guide
+**Related Documentation** (in the project repository):
+- PROJECT_STRUCTURE.md - Current architecture
+- Refactor/FUTURE_STATE_NOTES.md - Long-term architecture plans
+- TESTING.md - Testing strategies
+- DEBUGGING_WHITE_SCREEN.md - Troubleshooting guide
 
 **External Resources**:
 - Expo Roadmap: https://expo.canny.io/

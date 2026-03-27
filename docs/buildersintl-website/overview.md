@@ -522,11 +522,11 @@ For organizations with on-premises infrastructure or Synology NAS:
 - SEO: >95
 
 ### Load Time Goals
-- First Contentful Paint (FCP): <1.5s
-- Largest Contentful Paint (LCP): <2.5s
-- Time to Interactive (TTI): <3.5s
-- Cumulative Layout Shift (CLS): <0.1
-- First Input Delay (FID): <100ms
+- First Contentful Paint (FCP): under 1.5 seconds
+- Largest Contentful Paint (LCP): under 2.5 seconds
+- Time to Interactive (TTI): under 3.5 seconds
+- Cumulative Layout Shift (CLS): under 0.1
+- First Input Delay (FID): under 100 milliseconds
 
 ### Optimization Strategies
 - Static generation for unchanged content
@@ -645,14 +645,14 @@ For organizations with on-premises infrastructure or Synology NAS:
 ## Success Metrics
 
 ### Technical Metrics
-- Page load time <2 seconds (90th percentile)
+- Page load time under 2 seconds (90th percentile)
 - Uptime >99.5% (excluding planned maintenance)
 - Zero critical security vulnerabilities
 - Lighthouse scores >90 across all metrics
 - Mobile usability score 100/100
 
 ### User Experience Metrics
-- Bounce rate <40%
+- Bounce rate under 40 percent
 - Average session duration >2 minutes
 - Pages per session >2.5
 - Contact form submission rate >5% of visitors
@@ -660,7 +660,7 @@ For organizations with on-premises infrastructure or Synology NAS:
 
 ### Content Management Metrics
 - Content editors can publish without technical assistance
-- Average time to publish new content <10 minutes
+- Average time to publish new content under 10 minutes
 - Image upload and optimization seamless
 - Zero content publication errors
 - Editor satisfaction score >8/10

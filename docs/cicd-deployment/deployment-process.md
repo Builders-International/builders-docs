@@ -460,8 +460,8 @@ Track these metrics for each deployment:
 **Goals:**
 - Deploy at least daily to staging
 - Deploy to production multiple times per week
-- Change failure rate <5%
-- MTTR <30 minutes
+- Change failure rate under 5 percent
+- MTTR under 30 minutes
 
 ## Resources
 

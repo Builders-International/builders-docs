@@ -2,6 +2,20 @@ import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
+module.exports = {
+  plugins: [
+    [
+      'posthog-docusaurus',
+      {
+        apiKey: 'phc_U1WrxBRZchT9vdlYTVQnTsJs8i49VRRTPvXzIjGA7Cd',
+        appUrl: 'https://us.i.posthog.com',
+        enableInDevelopment: false,
+      },
+    ],
+  ],
+}
+
+
 const config: Config = {
   title: 'Builders International Docs',
   tagline: 'Internal Project Documentation',
